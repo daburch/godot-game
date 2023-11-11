@@ -24,4 +24,16 @@ Simple game to learn Godot game engine
 
 [x] Give the player animations
 
+[x] Create a map
+
+[x] Allow the player to walk around the map
+
+[] Add Collision
+
+[] Add camera movement
+
+[] Create an enemy
+
+[] Add combat
+
 [] more to come...
