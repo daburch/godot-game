@@ -18,7 +18,7 @@ Simple game to learn Godot game engine
 
 ## Milestones
 
-[] Load a player into the game
-[] Make the player move
+[x] Load a player into the game
+[x] Make the player move
 [] Give the player animations
 [] more to come...
