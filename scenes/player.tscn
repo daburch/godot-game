@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0ouxxknpthqo"]
+
+[ext_resource type="Script" path="res://scripts/character_movement.gd" id="1_lrpq3"]
+[ext_resource type="SpriteFrames" uid="uid://brvsiedsq7mur" path="res://sprites/spriteframes/player_sprite_frames.tres" id="2_eb6rs"]
+
+[node name="player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_lrpq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(16, 8)
+sprite_frames = ExtResource("2_eb6rs")
+animation = &"idle_front"
+frame = 4
+frame_progress = 0.0218609
