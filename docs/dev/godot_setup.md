@@ -6,11 +6,17 @@
 
 https://godotengine.org/download/windows/
 
+## Install
+
+- extract the downloaded exe to the desired location and run it. No installation needed.
+
 ## Assets
 
 [Mystic Woods](https://game-endeavor.itch.io/mystic-woods)
 
 ## References
+
+[Godot Docs](https://docs.godotengine.org/en/stable/)
 
 [The ultimate introduction to Godot 4](https://www.youtube.com/watch?v=nAh_Kx5Zh5Q)
 
