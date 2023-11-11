@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-@export var speed = 100
+@export var speed = 4000
 @export var current_direction = "none"
 @export var has_movement_input = "none"
 
-func get_input():
+func get_input(delta):
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed
+	velocity = input_direction * speed * delta
 	if input_direction.x > 0:
 		current_direction = "right"
 		has_movement_input=true
@@ -21,7 +21,6 @@ func get_input():
 		has_movement_input=true
 	else:
 		has_movement_input=false
-		
 
 func play_animation():
 	var animation = $AnimatedSprite2D
@@ -52,6 +51,6 @@ func play_animation():
 			animation.play("idle_front")
 
 func _physics_process(delta):
-	get_input()
+	get_input(delta)
 	play_animation()
 	move_and_slide()
