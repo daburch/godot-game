@@ -1,28 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0ouxxknpthqo"]
+[gd_scene load_steps=5 format=3 uid="uid://chw58caxpnv1r"]
 
-[ext_resource type="Script" path="res://scripts/character_movement.gd" id="1_lrpq3"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cyps5"]
 [ext_resource type="SpriteFrames" uid="uid://brvsiedsq7mur" path="res://sprites/spriteframes/player_sprite_frames.tres" id="2_eb6rs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2x1iv"]
 radius = 3.0
 height = 12.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mh8fl"]
+height = 26.0
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_lrpq3")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -15)
-sprite_frames = ExtResource("2_eb6rs")
-animation = &"idle_front"
-frame = 4
-frame_progress = 0.0218609
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_cyps5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("2_eb6rs")
+animation = &"death"
+
+[node name="collision_range" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2x1iv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="camera" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 0
@@ -32,3 +36,12 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.15
 drag_top_margin = 0.15
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_mh8fl")
+
+[connection signal="animation_finished" from="animated_sprite" to="." method="_on_animated_sprite_animation_finished"]
+[connection signal="animation_looped" from="animated_sprite" to="." method="_on_animated_sprite_animation_looped"]

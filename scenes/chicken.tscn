@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://5uvkjl2j80je"]
+[gd_scene load_steps=23 format=3 uid="uid://5uvkjl2j80je"]
 
+[ext_resource type="Script" path="res://scripts/chicken.gd" id="1_1nigg"]
 [ext_resource type="Texture2D" uid="uid://fuxm1jcg64of" path="res://sprites/enemies/Chicken_Sprite_Sheet.png" id="1_xv0pa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpp0e"]
@@ -141,15 +142,51 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="chicken" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_lhshg"]
+radius = 172.939
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvulg"]
+radius = 26.0
+
+[node name="chicken" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_1nigg")
+
+[node name="collision_range" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dpp0e")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 1
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_6s35q")
 animation = &"walking"
+frame_progress = 0.786922
+
+[node name="detection_range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_range"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_lhshg")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_pvulg")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="body_entered" from="detection_range" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="detection_range" to="." method="_on_detection_range_body_exited"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
