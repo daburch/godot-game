@@ -14,6 +14,8 @@ https://godotengine.org/download/windows/
 
 [Mystic Woods](https://game-endeavor.itch.io/mystic-woods)
 
+[Chicken](https://pixelplant.itch.io/chicken-sprite-sheet)
+
 ## References
 
 [Godot Docs](https://docs.godotengine.org/en/stable/)

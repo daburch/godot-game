@@ -1,0 +1,155 @@
+[gd_scene load_steps=20 format=3 uid="uid://5uvkjl2j80je"]
+
+[ext_resource type="Texture2D" uid="uid://fuxm1jcg64of" path="res://sprites/enemies/Chicken_Sprite_Sheet.png" id="1_xv0pa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpp0e"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa8ux"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko4ds"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as7t8"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx6qg"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdqsd"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3c08"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv41p"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kmft"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oqig"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm6py"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kja0c"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wavg"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp8p8"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5c7t"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgp0w"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maul3"]
+atlas = ExtResource("1_xv0pa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6s35q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa8ux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko4ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as7t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx6qg")
+}],
+"loop": true,
+"name": &"dip",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdqsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3c08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv41p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kmft")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oqig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm6py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kja0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wavg")
+}],
+"loop": true,
+"name": &"sit_stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp8p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5c7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgp0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maul3")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="chicken" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dpp0e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_6s35q")
+animation = &"walking"
