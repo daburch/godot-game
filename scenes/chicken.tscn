@@ -176,9 +176,17 @@ shape = SubResource("CircleShape2D_lhshg")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_pvulg")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_pvulg")
 
@@ -188,4 +196,6 @@ shape = SubResource("CircleShape2D_pvulg")
 [connection signal="body_exited" from="detection_range" to="." method="_on_detection_range_body_exited"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hurtbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

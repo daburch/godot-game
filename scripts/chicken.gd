@@ -8,7 +8,9 @@ var target = null
 var in_attack_range = false
 var ready_to_attack = true
 
-var attack_power = 10
+@export var health = 50
+@export var attack_power = 10
+@export var defence = 0
 
 func enemy():
 	pass
@@ -53,3 +55,9 @@ func send_attack():
 		ready_to_attack = false
 		$attack_cooldown.start()
 		target.recieve_attack(attack_power)
+
+func recieve_attack(power):
+	var damage = power - ( defence / 10.0 )
+	health -= damage
+	if health <= 0:
+		self.queue_free()

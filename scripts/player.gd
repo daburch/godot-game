@@ -5,7 +5,8 @@ extends CharacterBody2D
 @export var current_direction = "down"
 @export var has_movement_input = false
 
-var defence = 10
+@export var defence = 10
+@export var attack_power = 25
 
 enum {
 	IDLE,
@@ -13,6 +14,9 @@ enum {
 	ATTACK
 }
 var state = WALK 
+
+func _ready():
+	$hitbox_pivot/sword_hitbox/CollisionShape2D.disabled = true
 
 func player():
 	pass
@@ -71,6 +75,10 @@ func _physics_process(delta):
 	play_animation()
 	move_and_slide()
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	if state == ATTACK:
 		state = IDLE
+
+func _on_sword_hitbox_area_entered(area: Area2D):
+	if area.owner.has_method("enemy"):
+		area.owner.recieve_attack(attack_power)

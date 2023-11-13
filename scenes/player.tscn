@@ -494,6 +494,8 @@ drag_left_margin = 0.15
 drag_top_margin = 0.15
 
 [node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, -8)
@@ -505,8 +507,11 @@ rotation = 1.5708
 
 [node name="sword_hitbox" type="Area2D" parent="hitbox_pivot"]
 position = Vector2(12, 0)
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_pivot/sword_hitbox"]
 shape = SubResource("CapsuleShape2D_crfqm")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="hitbox_pivot/sword_hitbox" to="." method="_on_sword_hitbox_area_entered"]
