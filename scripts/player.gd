@@ -43,28 +43,24 @@ func get_input(delta):
 	else:
 		state = IDLE
 
-func play_directional_animation(animation, side, back, front):
+func play_directional_animation(side, right, back, front):
 	if current_direction == "right":
-		animation.flip_h = false
-		animation.play(side)
+		$AnimationPlayer.play(right)
 	elif current_direction == "left":
-		animation.flip_h = true
-		animation.play(side)
+		$AnimationPlayer.play(side)
 	elif current_direction == "up":
-		animation.flip_h = false
-		animation.play(back)
+		$AnimationPlayer.play(back)
 	else:
-		animation.flip_h = false
-		animation.play(front)
+		$AnimationPlayer.play(front)
 
 func play_animation():
 	match state:
 		IDLE:
-			play_directional_animation($animated_sprite, "idle_side", "idle_back", "idle_front")
+			play_directional_animation("idle_left", "idle_right", "idle_back", "idle_front")
 		WALK:
-			play_directional_animation($animated_sprite, "walking_side", "walking_back", "walking_front")
+			play_directional_animation("walk_left", "walk_right", "walk_back", "walk_front")
 		ATTACK:
-			play_directional_animation($animated_sprite, "attack_side", "attack_back", "attack_front")
+			play_directional_animation("attack_left", "attack_right", "attack_back", "attack_front")
 
 func recieve_attack(power):
 	var damage = power - ( defence / 10.0 )
@@ -75,6 +71,6 @@ func _physics_process(delta):
 	play_animation()
 	move_and_slide()
 
-func _on_animated_sprite_animation_finished():
+func _on_animation_player_animation_finished(anim_name):
 	if state == ATTACK:
 		state = IDLE
