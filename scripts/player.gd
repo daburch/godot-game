@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var health = 100
-@export var speed = 4000
+@export var speed = 100
 @export var current_direction = "down"
 @export var has_movement_input = false
 
@@ -31,7 +31,7 @@ func get_input(delta):
 		return
 
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed * delta
+	velocity = input_direction * speed
 	if input_direction.x > 0:
 		current_direction = "right"
 		state = WALK
@@ -69,6 +69,7 @@ func play_animation():
 func recieve_attack(power):
 	var damage = power - ( defence / 10.0 )
 	health -= damage
+	# todo: die
 
 func _physics_process(delta):
 	get_input(delta)
@@ -82,3 +83,10 @@ func _on_animation_player_animation_finished(_anim_name):
 func _on_sword_hitbox_area_entered(area: Area2D):
 	if area.owner.has_method("enemy"):
 		area.owner.recieve_attack(attack_power)
+
+
+func _on_hitbox_area_entered(area):
+	var o = area.owner
+	if o.has_method("loot"):
+		print('loot found: ' + o.name)
+		o.queue_free()

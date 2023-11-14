@@ -120,7 +120,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7wavg")
 }],
-"loop": true,
+"loop": false,
 "name": &"sit_stand",
 "speed": 5.0
 }, {
@@ -164,7 +164,6 @@ shape = SubResource("CapsuleShape2D_dpp0e")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_6s35q")
 animation = &"walking"
-frame_progress = 0.786922
 
 [node name="detection_range" type="Area2D" parent="."]
 collision_layer = 0

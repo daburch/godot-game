@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MonsterManager="*res://scripts/monster_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -63,6 +67,7 @@ attack={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="PlayerHurtbox"
 2d_physics/layer_4="EnemyHurtbox"
+2d_physics/layer_5="Loot"
 
 [rendering]
 
